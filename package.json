@@ -1,0 +1,33 @@
+{
+  "name": "nodebot-watson",
+  "version": "1.0.0",
+  "description": "NodeBot using watson",
+  "main": "app.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/temploDeSalomao"
+  },
+  "keywords": [
+    "chatbot",
+    "chatbot using watson",
+    "chatbot watson",
+    "everybody loves watson",
+    "ibm watson",
+    "node bot",
+    "node chatbot",
+    "watson",
+    "watson chatbot",
+    "watson bot"
+  ],
+  "author": "Vitor de Lima",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  },
+  "dependencies": {
+    "ibm-watson": "^4.1.0",
+    "prompts": "^2.0.4",
+    "shelljs": "^0.8.3"
+  }
+}
