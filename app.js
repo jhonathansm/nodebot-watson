@@ -53,7 +53,7 @@ async function getUserMessage(){
 
 function callWatson(x){
 	counter=1;
-	watson.message({workspace_id: '03b52dbd-1d26-4469-aa47-1827f3c998b0',input: {'text': x}},(e,r)=>{
+	watson.message({workspace_id: process.env.workspaceID,input: {'text': x}},(e,r)=>{
 		if(e){
 			console.log(e);
 		}
