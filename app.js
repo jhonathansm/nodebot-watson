@@ -51,6 +51,8 @@ async function getUserMessage(){
 	}
 }
 
+
+
 function callWatson(x){
 	counter=1;
 	watson.message({workspace_id: process.env.workspaceID,input: {'text': x}},(e,r)=>{
@@ -63,16 +65,23 @@ function callWatson(x){
 			// wr = watson reply
 			const wR = JSON.parse(JSON.stringify(r));
 
+				// console.log(wR);
+
 				let	intent = wR.intents[0] > '' ? wR.intents[0].intent : false ,
 					confidence = wR.intents[0] > '' ? wR.intents[0].confidence : false,
 					
-					entities = wR.entities[0] > '' ? wR.entities[0] : false,
+					entities = wR.entities[0] > '' ? JSON.stringify(wR.entities[0]) : false,
 
 					userInput = wR.input > '' ? JSON.parse(JSON.stringify(wR.input)).text : false,
 
 					output = JSON.stringify(wR.output),
 
+					outputOptions = JSON.parse(output).generic[2] > '' ?  JSON.parse(output).generic[2].options  :  false, 
+
 					context = JSON.stringify(wR.context);  
+
+					// console.log(wR)
+					console.log(outputOptions);
 
 
 				console.log('------------------------------------------------------------------------');
@@ -104,8 +113,19 @@ function callWatson(x){
 						console.log(JSON.parse(output).text[x]);
 					}
 				});
+
+				// when have options
+				if(outputOptions != false){
+					Object.keys(outputOptions).forEach(function(y) {
+						console.log(outputOptions[y].value);
+
+					})
+				}
+
 		getUserMessage();
 		}
 	});
 }			
 getUserMessage();
+
+callWatson();
