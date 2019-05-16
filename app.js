@@ -62,7 +62,6 @@ function callWatson(x){
 		else{
 			console.log('\r\n');	
 
-			// wr = watson reply
 			const wR = JSON.parse(JSON.stringify(r));
 
 				// console.log(wR);
@@ -76,32 +75,34 @@ function callWatson(x){
 
 					output = JSON.stringify(wR.output),
 
-					outputOptions = JSON.parse(output).generic[2] > '' ?  JSON.parse(output).generic[2].options  :  false, 
+					outputOptionsGeneral = JSON.parse(output).generic[2] > '' ?  JSON.parse(output).generic[2].options  :  false, 
+					
+					outputOptionsSpecific = JSON.parse(output).generic[1] > '' ?  JSON.parse(output).generic[1].options  :  false, 
 
 					context = JSON.stringify(wR.context);  
 
-					// console.log(wR)
+					// console.log(outputOptionsGeneral);
 					// console.log(outputOptions);
 
 
-				console.log('------------------------------------------------------------------------');
-				console.log('PRODUCTION INFORMATIONS:');
-				console.log('\r\n');
+				// console.log('------------------------------------------------------------------------');
+				// console.log('PRODUCTION INFORMATIONS:');
+				// console.log('\r\n');
 
-				console.log ('Intenções: ' + intent);
-				console.log ('Confidencia: ' + confidence);
+				// console.log ('Intenções: ' + intent);
+				// console.log ('Confidencia: ' + confidence);
 				
-				console.log ('Entities: ' + entities);
-				console.log ('Entrada do usuario: ' + userInput);
-				console.log('\r\n');
-				console.log ('Saida do bot: ' + output);
-				console.log('\r\n');
+				// console.log ('Entities: ' + entities);
+				// console.log ('Entrada do usuario: ' + userInput);
+				// console.log('\r\n');
+				// console.log ('Saida do bot: ' + output);
+				// console.log('\r\n');
 				
-				console.log ('contexto: ' + context);
+				// console.log ('contexto: ' + context);
 				
-				console.log('\r\n');
-				console.log('------------------------------------------------------------------------');
-				console.log('\n');
+				// console.log('\r\n');
+				// console.log('------------------------------------------------------------------------');
+				// console.log('\n');
 
 				console.log('BOT OUTPUT:');
 				console.log('');
@@ -114,18 +115,29 @@ function callWatson(x){
 					}
 				});
 
-				// when have options
-				if(outputOptions != false){
-					Object.keys(outputOptions).forEach(function(y) {
-						console.log(outputOptions[y].value);
+				// when have General options
+		
+
+				if(outputOptionsGeneral != false){
+					console.log('-');
+					Object.keys(outputOptionsGeneral).forEach(function(y) {
+						console.log(outputOptionsGeneral[y].label);
 
 					})
 				}
+
+				// When have specific options
+				if(outputOptionsSpecific != null){
+					console.log('-');
+					Object.keys(outputOptionsSpecific).forEach(function(z) {
+						console.log(outputOptionsSpecific[z].label);
+
+					})
+				}
+				// }
 
 		getUserMessage();
 		}
 	});
 }			
-getUserMessage();
-
 callWatson();
