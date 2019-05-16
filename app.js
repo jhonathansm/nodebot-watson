@@ -81,7 +81,7 @@ function callWatson(x){
 					context = JSON.stringify(wR.context);  
 
 					// console.log(wR)
-					console.log(outputOptions);
+					// console.log(outputOptions);
 
 
 				console.log('------------------------------------------------------------------------');
